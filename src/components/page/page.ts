@@ -24,7 +24,7 @@ export class PageItemComponent
       <li class="page_item">
         <section class="page_item_body"></section>
         <div class="page_item_controls">
-          <button class="close">❌</button>
+          <button class="close"><i class="fas fa-times"></i></button>
         </div>
       </li>
     `);

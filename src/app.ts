@@ -1,5 +1,8 @@
+import { NoteComponent } from './components/page/item/note.js';
+import { ImageComponent } from './components/page/item/image.js';
 import { Component } from "./components/component.js";
 import { PlaceComponent } from "./components/page/item/place.js";
+import { VideoComponent } from "./components/page/item/video.js";
 import { Composable, PageComponent, PageItemComponent } from "./components/page/page.js";
 
 export class App {
@@ -14,6 +17,29 @@ export class App {
       "My favorite place"
     );
     this.page.addChild(place);
+
+    const video = new VideoComponent(
+      "video",
+      "Jazz Music",
+      "My favorite music",
+      "https://youtu.be/6ueuHf3dX5k"
+    );
+    this.page.addChild(video);
+
+    const image = new ImageComponent(
+      "image",
+      "Travel picture",
+      "My favorite image",
+      "https://picsum.photos/500/300"
+    );
+    this.page.addChild(image);
+
+    const note = new NoteComponent(
+      "note",
+      "Things to do",
+      "do assignments",
+    );
+    this.page.addChild(note);
   }
 }
 
