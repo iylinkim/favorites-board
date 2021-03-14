@@ -4,8 +4,8 @@ export class App {
     constructor(appRoot) {
         this.page = new PageComponent();
         this.page.attachTo(appRoot);
-        this.place = new PlaceComponent("place", "Vintage Market", "My favorite place");
-        this.place.attachTo(appRoot, "afterend");
+        const place = new PlaceComponent("place", "Vintage Market", "My favorite place");
+        this.page.addChild(place);
     }
 }
 new App(document.querySelector(".document"));
