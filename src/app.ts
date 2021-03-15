@@ -1,9 +1,14 @@
-import { NoteComponent } from './components/page/item/note.js';
-import { ImageComponent } from './components/page/item/image.js';
+import { InputDialog } from "./components/page/dialog/dialog.js";
+import { NoteComponent } from "./components/page/item/note.js";
+import { ImageComponent } from "./components/page/item/image.js";
 import { Component } from "./components/component.js";
 import { PlaceComponent } from "./components/page/item/place.js";
 import { VideoComponent } from "./components/page/item/video.js";
-import { Composable, PageComponent, PageItemComponent } from "./components/page/page.js";
+import {
+  Composable,
+  PageComponent,
+  PageItemComponent,
+} from "./components/page/page.js";
 
 export class App {
   private readonly page: Component & Composable;
@@ -34,12 +39,23 @@ export class App {
     );
     this.page.addChild(image);
 
-    const note = new NoteComponent(
-      "note",
-      "Things to do",
-      "do assignments",
-    );
+    const note = new NoteComponent("note", "Things to do", "do assignments");
     this.page.addChild(note);
+
+    const placeBtn = document.querySelector("#new_place")! as HTMLButtonElement;
+    placeBtn?.addEventListener("click", () => {
+      const dialog = new InputDialog();
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.attachTo(document.body);
+    });
   }
 }
 

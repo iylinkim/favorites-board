@@ -109,20 +109,75 @@ body {
   font-size: 1.4em;
 }
 
-.text .info{
-  padding-top:10px;
-  font-size:0.9em;
+.text .info {
+  padding-top: 10px;
+  font-size: 0.9em;
 }
 
 /* place */
-.place_address{
-  display:flex;
-  padding-top:5px;
-  font-size:0.8em;
+.place_address {
+  display: flex;
+  padding-top: 5px;
+  font-size: 0.8em;
 }
-.place_address .pin{
-  padding-right:5px;
-  color:#022422;
+.place_address .pin {
+  padding-right: 5px;
+  color: #022422;
+}
+
+/* dialog */
+.dialog {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+#dialog_body {
+  max-width: 810px;
+  width: 50%;
+  padding: 10px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 10px;
+  position: relative;
+  background-color: #efefef;
+}
+
+.comment_title {
+  color: #025955;
+}
+.comment_input {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.close,
+.dialog_submit {
+  cursor: pointer;
+  position: absolute;
+}
+
+.close {
+  right: 10px;
+  top: 10px;
+}
+
+.dialog_submit {
+  padding: 5px 10px 2px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #025955;
+  color: #025955;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #fff7e3;
 }
 
 /* footer */
@@ -131,4 +186,9 @@ body {
   background-color: #022422;
   color: #efefef;
   font-size: 0.6rem;
+}
+
+/* icons */
+.fa-times {
+  color: #025955;
 }
