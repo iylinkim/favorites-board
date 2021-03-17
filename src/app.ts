@@ -1,21 +1,24 @@
-import { UrlSectionInput } from './components/input/url-input.js';
+import { SearchSectionInput } from './components/input/search-input.js';
+import { SelectSectionInput } from "./components/input/select-input.js";
+import { UrlSectionInput } from "./components/input/url-input.js";
 import {
   InputDialog,
   FileData,
   SearchData,
   SelectData,
-  UrlData
+  UrlData,
 } from "./components/page/dialog/dialog.js";
 import { NoteComponent } from "./components/page/item/note.js";
 import { ImageComponent } from "./components/page/item/image.js";
 import { Component } from "./components/component.js";
-// import { PlaceComponent } from "./components/page/item/place.js";
+import { PlaceComponent } from "./components/page/item/place.js";
 import { VideoComponent } from "./components/page/item/video.js";
 import {
   Composable,
   PageComponent,
   PageItemComponent,
 } from "./components/page/page.js";
+import { FileSectionInput } from "./components/input/file-input.js";
 
 type InputComponentConstructor<
   T = (FileData | SearchData | SelectData | UrlData) & Component
@@ -36,29 +39,34 @@ export class App {
     // );
     // this.page.addChild(place);
 
-    const image = new ImageComponent(
-      "image",
-      "Travel picture",
-      "My favorite image",
-      "https://picsum.photos/500/300"
+    this.bindElementToDialog<SearchSectionInput>(
+      "#new_place",
+      SearchSectionInput,
+      (input: SearchSectionInput, title: string, comment: string) =>
+        new PlaceComponent(title, comment, input.search)
     );
-    this.page.addChild(image);
-
-    const note = new NoteComponent("note", "Things to do", "do assignments");
-    this.page.addChild(note);
-
-    // this.bindElementToDialog<TextSectionInput>(
-    //   "#new_place",
-    //   TextSectionInput,
-    //   (input: TextSectionInput) =>
-    //     new PlaceComponent(input.title, input.comment)
-    // );
 
     this.bindElementToDialog<UrlSectionInput>(
       "#new_video",
       UrlSectionInput,
-      (input: UrlSectionInput, title:string, comment:string) =>
+      (input: UrlSectionInput, title: string, comment: string) =>
         new VideoComponent(title, comment, input.url)
+    );
+
+    this.bindElementToDialog<FileSectionInput>(
+      "#new_image",
+      FileSectionInput,
+      (input: FileSectionInput, title: string, comment: string) => {
+        console.log(input);
+        return new ImageComponent(title, comment, input.file);
+      }
+    );
+
+    this.bindElementToDialog<SelectSectionInput>(
+      "#new_note",
+      SelectSectionInput,
+      (input: SelectSectionInput, title: string, comment: string) =>
+        new NoteComponent(title, comment, input.category)
     );
   }
 
@@ -67,7 +75,7 @@ export class App {
   >(
     selector: string,
     InputComponent: InputComponentConstructor<T>,
-    makeSection: (input: T, title:string, comment:string) => Component //전달된 T타입을 가진 input으로 Component를 만드는 콜백함수
+    makeSection: (input: T, title: string, comment: string) => Component //전달된 T타입을 가진 input으로 Component를 만드는 콜백함수
   ) {
     const element = document.querySelector(selector)! as HTMLButtonElement;
     element.addEventListener("click", () => {
@@ -76,14 +84,12 @@ export class App {
 
       dialog.addChild(input);
       dialog.attachTo(this.dialogRoot);
-      // console.log(dialog.title, dialog.comment)
 
       dialog.setOnCloseListener(() => {
         dialog.removeFrom(this.dialogRoot); //close버튼 누르면 document.body에서 dialog 제거
       });
       dialog.setOnSubmitListener(() => {
         const image = makeSection(input, dialog.title, dialog.comment);
-        console.log(image)
         this.page.addChild(image);
         dialog.removeFrom(this.dialogRoot); //submit후 dialog 창 없애주어야 함
       });

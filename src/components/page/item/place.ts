@@ -1,6 +1,6 @@
 import { BaseComponent } from "../../component.js";
 export class PlaceComponent extends BaseComponent<HTMLElement> {
-  constructor(title: string, info: string) {
+  constructor(title: string, info: string, keyword:string) {
     super(`
         <section class="item place">
             <div class="holder place_holder"><canvas class="map"></canvas></div>
@@ -15,9 +15,8 @@ export class PlaceComponent extends BaseComponent<HTMLElement> {
         </section>
         `);
 
-    // const categoryElement = this.element.querySelector(".category")! as HTMLElement;
-    // console.log(categoryElement)
-    // categoryElement.textContent = category;
+    const categoryElement = this.element.querySelector(".category")! as HTMLElement;
+    categoryElement.textContent = keyword;
 
     const titleElement = this.element.querySelector(
       ".title"
