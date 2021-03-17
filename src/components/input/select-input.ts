@@ -3,7 +3,7 @@ export class SelectSectionInput extends BaseComponent<HTMLElement> {
   constructor() {
     super(`
         <div class="form_container">
-            <label for="title">Search</label>
+            <label for="title">Category</label>
             <select id="select">
                 <option value="daily">daily</option>
                 <option value="important">important</option>

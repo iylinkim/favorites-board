@@ -1,4 +1,4 @@
-import { SearchSectionInput } from './components/input/search-input.js';
+// import { SearchSectionInput } from "./components/input/search-input.js";
 import { SelectSectionInput } from "./components/input/select-input.js";
 import { UrlSectionInput } from "./components/input/url-input.js";
 import {
@@ -11,7 +11,7 @@ import {
 import { NoteComponent } from "./components/page/item/note.js";
 import { ImageComponent } from "./components/page/item/image.js";
 import { Component } from "./components/component.js";
-import { PlaceComponent } from "./components/page/item/place.js";
+// import { PlaceComponent } from "./components/page/item/place.js";
 import { VideoComponent } from "./components/page/item/video.js";
 import {
   Composable,
@@ -32,19 +32,12 @@ export class App {
     this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(appRoot);
 
-    // const place = new PlaceComponent(
-    //   "place",
-    //   "Vintage Market",
-    //   "My favorite place"
+    // this.bindElementToDialog<SearchSectionInput>(
+    //   "#new_place",
+    //   SearchSectionInput,
+    //   (input: SearchSectionInput, title: string, comment: string) =>
+    //     new PlaceComponent(title, comment, input.search)
     // );
-    // this.page.addChild(place);
-
-    this.bindElementToDialog<SearchSectionInput>(
-      "#new_place",
-      SearchSectionInput,
-      (input: SearchSectionInput, title: string, comment: string) =>
-        new PlaceComponent(title, comment, input.search)
-    );
 
     this.bindElementToDialog<UrlSectionInput>(
       "#new_video",
@@ -57,7 +50,6 @@ export class App {
       "#new_image",
       FileSectionInput,
       (input: FileSectionInput, title: string, comment: string) => {
-        console.log(input);
         return new ImageComponent(title, comment, input.file);
       }
     );
@@ -68,7 +60,17 @@ export class App {
       (input: SelectSectionInput, title: string, comment: string) =>
         new NoteComponent(title, comment, input.category)
     );
+
+     // For demo :)
+     this.page.addChild(new ImageComponent('Image Title','info', 'https://picsum.photos/800/400'));
+     this.page.addChild(new VideoComponent('Video Title', 'info','https://youtu.be/D7cwvvA7cP0'));
+     this.page.addChild(new NoteComponent('Note Title', "Don't forget to code your dream",'important'));
+     this.page.addChild(new ImageComponent('Image Title','info', 'https://picsum.photos/800/400'));
+     this.page.addChild(new VideoComponent('Video Title', 'info','https://youtu.be/D7cwvvA7cP0'));
+     this.page.addChild(new NoteComponent('Note Title', "Don't forget to code your dream",'important'));
+    
   }
+
 
   private bindElementToDialog<
     T extends (FileData | SearchData | SelectData | UrlData) & Component
@@ -78,8 +80,9 @@ export class App {
     makeSection: (input: T, title: string, comment: string) => Component //전달된 T타입을 가진 input으로 Component를 만드는 콜백함수
   ) {
     const element = document.querySelector(selector)! as HTMLButtonElement;
-    element.addEventListener("click", () => {
-      const dialog = new InputDialog();
+    element.addEventListener("click", (e: Event) => {
+      const target = e.currentTarget! as HTMLButtonElement;
+      const dialog = new InputDialog(target.innerText);
       const input = new InputComponent();
 
       dialog.addChild(input);
@@ -88,11 +91,17 @@ export class App {
       dialog.setOnCloseListener(() => {
         dialog.removeFrom(this.dialogRoot); //close버튼 누르면 document.body에서 dialog 제거
       });
+
       dialog.setOnSubmitListener(() => {
-        const image = makeSection(input, dialog.title, dialog.comment);
-        this.page.addChild(image);
-        dialog.removeFrom(this.dialogRoot); //submit후 dialog 창 없애주어야 함
+        if (dialog.title === "" || dialog.comment === "") {
+          alert("Please enter contents!");
+        } else {
+          const image = makeSection(input, dialog.title, dialog.comment);
+          this.page.addChild(image);
+          dialog.removeFrom(this.dialogRoot); //submit후 dialog 창 없애주어야 함
+        }
       });
+
     });
   }
 }

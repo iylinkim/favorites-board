@@ -4,7 +4,7 @@ export class UrlSectionInput extends BaseComponent<HTMLElement> {
     super(`
         <div class="form_container">
             <label for="title">Url</label>
-            <input type="text" id="url">
+            <input type="text" id="url" required/>
         </div>
         `);
   }

@@ -4,7 +4,7 @@ export class SearchSectionInput extends BaseComponent<HTMLElement> {
     super(`
         <div class="form_container">
             <label for="title">Search</label>
-            <input type="text" id="search">
+            <input type="text" id="search"/>
             <i class="fas fa-search"></i>
             <canvas></canvas>
         </div>

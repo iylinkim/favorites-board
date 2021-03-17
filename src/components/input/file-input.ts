@@ -6,7 +6,7 @@ export class FileSectionInput extends BaseComponent<HTMLElement> {
     super(`
         <div class="form_container">
             <label for="title">File</label>
-            <input type="file" accept="image/*" id="file">
+            <input type="file" accept="image/*" id="file"/>
         </div>
         `);
     const element = this.element.querySelector("#file")! as HTMLInputElement;

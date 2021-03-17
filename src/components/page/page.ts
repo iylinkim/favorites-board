@@ -56,7 +56,7 @@ export class PageComponent
   addChild(section: Component) {
     const item = new this.pageItemConstructor();
     item.addChild(section);
-    item.attachTo(this.element, "beforeend");
+    item.attachTo(this.element, "afterbegin");
     item.setOnCloseListener(() => {
       item.removeFrom(this.element);
     });

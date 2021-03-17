@@ -1,6 +1,6 @@
 import { BaseComponent } from "./../../component.js";
 export class NoteComponent extends BaseComponent<HTMLElement> {
-  constructor(title: string, info: string, note_category:string) {
+  constructor(title: string, info: string, note_category: string) {
     super(`
         <section class="item note">
             <div class="text note_info">
@@ -12,11 +12,6 @@ export class NoteComponent extends BaseComponent<HTMLElement> {
         </section>
         `);
 
-    // const categoryElement = this.element.querySelector(
-    //   ".category"
-    // )! as HTMLElement;
-    // categoryElement.textContent = category;
-
     const titleElement = this.element.querySelector(
       ".title"
     )! as HTMLHeadingElement;
@@ -25,7 +20,10 @@ export class NoteComponent extends BaseComponent<HTMLElement> {
     const infoElement = this.element.querySelector(".info")! as HTMLElement;
     infoElement.textContent = info;
 
-    const noteCategoryElement = this.element.querySelector(".note_category")! as HTMLElement;
+    const noteCategoryElement = this.element.querySelector(
+      ".note_category"
+    )! as HTMLElement;
+    noteCategoryElement.classList.add(note_category);
     noteCategoryElement.textContent = note_category;
   }
 }
