@@ -83,6 +83,7 @@ body {
   padding: 15px;
   margin-bottom: 25px;
   border-radius: 10px;
+  border:3px solid transparent;
   background-color: rgb(248, 248, 248);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -299,4 +300,28 @@ body {
 /* icons */
 .fa-times {
   color: #025955;
+}
+
+/* Drag and Drop */
+.mute-children * {
+  pointer-events: none;
+}
+.lifted {
+  animation: drag_start 250ms;
+  opacity: 0.2;
+}
+
+@keyframes drag_start {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.drop-area {
+  /* transform: translateY(50px); */
+  /* box-shadow:0 0 30px rgba(2, 36, 34,0.5); */
+  border:3px solid rgba(2, 36, 34,0.5);
 }

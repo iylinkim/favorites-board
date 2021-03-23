@@ -22,7 +22,6 @@ export class ImageComponent extends BaseComponent<HTMLElement> {
     const imageElement = this.element.querySelector(
       ".image"
     )! as HTMLImageElement;
-    console.log("src: " + src);
     imageElement.src = src;
   }
 }
