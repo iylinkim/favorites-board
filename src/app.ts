@@ -32,13 +32,6 @@ export class App {
     this.page = new PageComponent(PageItemComponent);
     this.page.attachTo(appRoot);
 
-    // this.bindElementToDialog<SearchSectionInput>(
-    //   "#new_place",
-    //   SearchSectionInput,
-    //   (input: SearchSectionInput, title: string, comment: string) =>
-    //     new PlaceComponent(title, comment, input.search)
-    // );
-
     this.bindElementToDialog<UrlSectionInput>(
       "#new_video",
       UrlSectionInput,
@@ -60,17 +53,7 @@ export class App {
       (input: SelectSectionInput, title: string, comment: string) =>
         new NoteComponent(title, comment, input.category)
     );
-
-     // For demo :)
-     this.page.addChild(new ImageComponent('Image Title','info', 'https://picsum.photos/800/400'));
-     this.page.addChild(new VideoComponent('Video Title', 'info','https://youtu.be/D7cwvvA7cP0'));
-     this.page.addChild(new NoteComponent('Note Title', "Don't forget to code your dream",'important'));
-     this.page.addChild(new ImageComponent('Image Title','info', 'https://picsum.photos/800/400'));
-     this.page.addChild(new VideoComponent('Video Title', 'info','https://youtu.be/D7cwvvA7cP0'));
-     this.page.addChild(new NoteComponent('Note Title', "Don't forget to code your dream",'important'));
-    
   }
-
 
   private bindElementToDialog<
     T extends (FileData | SearchData | SelectData | UrlData) & Component
@@ -101,7 +84,6 @@ export class App {
           dialog.removeFrom(this.dialogRoot); //submit후 dialog 창 없애주어야 함
         }
       });
-
     });
   }
 }
