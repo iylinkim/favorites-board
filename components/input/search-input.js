@@ -15,3 +15,4 @@ export class SearchSectionInput extends BaseComponent {
         return element.value;
     }
 }
+//# sourceMappingURL=search-input.js.map

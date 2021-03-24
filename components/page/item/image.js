@@ -18,3 +18,4 @@ export class ImageComponent extends BaseComponent {
         imageElement.src = src;
     }
 }
+//# sourceMappingURL=image.js.map

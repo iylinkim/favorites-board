@@ -54,3 +54,4 @@ export class InputDialog extends BaseComponent {
         child.attachTo(body, "beforeend");
     }
 }
+//# sourceMappingURL=dialog.js.map

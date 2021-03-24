@@ -22,3 +22,4 @@ export class PlaceComponent extends BaseComponent {
         infoElement.textContent = info;
     }
 }
+//# sourceMappingURL=place.js.map

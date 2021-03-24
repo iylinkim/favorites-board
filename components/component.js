@@ -17,3 +17,4 @@ export class BaseComponent {
         component.attachTo(this.element, position);
     }
 }
+//# sourceMappingURL=component.js.map

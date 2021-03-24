@@ -20,3 +20,4 @@ export class NoteComponent extends BaseComponent {
         noteCategoryElement.textContent = note_category;
     }
 }
+//# sourceMappingURL=note.js.map

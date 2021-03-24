@@ -29,3 +29,4 @@ export class VideoComponent extends BaseComponent {
         return url;
     }
 }
+//# sourceMappingURL=video.js.map

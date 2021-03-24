@@ -42,3 +42,4 @@ export class App {
     }
 }
 new App(document.querySelector(".document"), document.body);
+//# sourceMappingURL=app.js.map
